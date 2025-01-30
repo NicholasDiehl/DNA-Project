@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indice de Proximité</title>
+    <link rel="stylesheet" href="static/style.css" />
+    
+</head>
+<body>
+    <h1>Indice de proximité</h1>
+    <br><br>
+	<div class="indice">
+		{% for nom,adn in ali.items() %} <!-- on parcours le dictionnaire de séquence -->
+			{% if nom|length == max_len_nom %}
+				<span class="nom_seq_comp">{{ nom }}</span>
+				<span class="espace">_</span>
+				<span class="espace">_</span>
+			{% else %}
+				<span class="nom_seq_comp">{{ nom }}</span>
+				{% for i in range(max_len_nom - (nom|length - 2)) %} <!-- Ajoute des espaces pour faire en sorte que les séquences sont alignés sur la page-->
+					<span class="espace">_</span>
+				{% endfor %}
+			{% endif %}
+			<br>
+			{% for char in adn %}
+				{% if char == 'A' %} <!-- Associe une couleur à chaque nucléotide des séquences -->
+					<span class="couleur-a">{{ char }}</span>
+				{% elif char == 'T' %}
+					<span class="couleur-t">{{ char }}</span>
+				{% elif char == 'G' %}
+					<span class="couleur-g">{{ char }}</span>
+				{% elif char == 'C' %}
+					<span class="couleur-c">{{ char }}</span>
+				{% else %}
+					<span class="tiret">{{ char }}</span>
+				{% endif %}
+			{% endfor %}
+			<br>
+		{% endfor %}
+		{% for i in range(max_len_nom + 2) %}
+			<span class="espace_no_float">_</span>
+		{% endfor %}
+		{% for i in indice_prox %}
+			{% if i == 1 %}
+				<span class="i_prox">*</span>
+			{% else %}
+				<span class="espace_no_float">_</span>
+			{% endif %}
+		{% endfor %}
+		<div><span class="calcul_indice">{{indice}}</span></div>
+        <br>
+	</div>
+
+	<div class="arbre_indice">
+        <img id="arbre" src="{{ url_for('static', filename='tree_image.png') }}"><!-- Image de l'arbre -->
+    </div>
+
+
+    <!-- Code de la double hélice -->
+    <div class="helix" style="--total:40">
+        <div class="strand" style="--i:1">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:2">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:3">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:4">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:5">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:6">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:7">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:8">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:9">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:10">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:11">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:12">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:13">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:14">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:15">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:16">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:17">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:18">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:19">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:20">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:21">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:22">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:23">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:24">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:25">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:26">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:27">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:28">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:29">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:30">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:31">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:32">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:33">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:34">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:35">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:36">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:37">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:38">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:39">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        <div class="strand" style="--i:40">
+            <div class="left">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+            <div class="right">
+                <div class="dot"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+</body>
+</html>

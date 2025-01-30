@@ -1,0 +1,365 @@
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0px;
+  background-color: #a0beff;
+}
+
+
+h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 50px;
+  color: #173657;
+  margin: 20px;
+  text-align: center;
+}
+
+
+#sequence_compare {
+  display: flex;
+  justify-content: space-around;
+  margin-left: 18%;
+}
+
+.options {
+  position: absolute;
+  right: 0;
+}
+
+#options_conteneur {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 16vw;
+  height: 100%;
+  background-color: #173657;
+  border-left: 3px solid #000;
+  color: white;
+  flex-direction: column;
+  padding-left: 1.8vw;
+  padding-top: 5vh;
+}
+
+#import_fasta {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 16vw;
+  height: 100%;
+  background-color: #173657;
+  border-left: 3px solid #000;
+  color: white;
+  flex-direction: column;
+  padding-left: 1.8vw;
+  padding-top: 5vh;
+}
+
+
+.label_seq {
+  margin-right: 3px;
+  text-indent: 3px;
+}
+
+#nom_seq_1 {width: 150px;}
+#nom_seq_2 {width: 150px;}
+
+
+#bouton_gen_1 {
+  margin-right: 26px;
+}
+
+#bouton_sauvegarder {
+  margin-top: 10px;
+  background-color:#c5c9eb;
+  border-radius: 10px;
+}
+
+#bouton_options {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+}
+
+#boutons_principal {
+  position: absolute;
+  top: 50%;
+  left: 43%;
+}
+
+.boutons {
+  position: relative;
+  margin-top: 10%;
+  top: 50%;
+  text-align: center;
+  left: 0%;
+  font-size: 1rem;
+  font-weight: 710;
+  padding: 0.3em 0.5em; 
+  color: rgb(26, 23, 80);
+  background-color: rgb(156, 220, 254);
+  border: 4px solid rgb(26, 23, 80);
+  cursor: pointer; 
+  transition: all 0.3s;
+  border-radius: 10px;
+}
+
+.boutons:hover { 
+  transform: translateY(-5px); 
+  background-color: rgb(26, 23, 80); 
+  color: rgb(156, 220, 254); 
+}
+
+.boutons:active {
+  border: black solid 2px ;
+}
+
+#bouton_indice { 
+  position: relative;
+  top: 110%;
+  left: 12%;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0.3em 0.5em; 
+  color: white;
+  background-color: rgb(111, 75, 188);
+  border: 4px solid #000428;
+  cursor: pointer; 
+  transition: all 0.3s;
+  border-radius: 10px;
+}
+
+#bouton_indice:hover {
+  border: 4px solid #111;
+  box-shadow: 0px 0px 26px 8px hsla(323, 87%, 50%, 0.664);
+  background-color: #000428;
+}
+
+#bouton_ajoute {width: 40px;}
+#bouton_enleve {width: 40px;}
+
+
+.boutons_generer { 
+  color: white;
+  border-color: rgb(111, 75, 188);
+  background-color:#348adb;
+  border: 2px solid rgb(111, 75, 188);
+  border-radius: 10px;
+  width: 28px;
+}
+
+.boutons_generer:hover { 
+  background-color:rgb(111, 75, 188);
+  border: 3px;
+  border: 2px solid rgb(111, 75, 188);
+  border-radius: 10px;
+
+}
+
+#erreur {
+  color: red;
+  font-weight: 400;
+  display: none;
+}
+
+.indice {
+  font-family: 'Courier New';
+  margin-left: 1%;
+  font-weight: 800;
+  white-space: nowrap;
+  font-size: 0;
+  margin-right: 1.5%;
+}
+
+.couleur-a {
+  background-color: rgba(31, 137, 189, 0.648);
+  display: inline-block;
+  font-size: 16px;
+}
+.couleur-t {
+  background-color: red;
+  display: inline-block;
+  font-size: 16px;
+}
+.couleur-g {
+  background-color: yellow;
+  display: inline-block;
+  font-size: 16px;
+}
+.couleur-c {
+  background-color: rgb(6, 223, 6);
+  display: inline-block;
+  font-size: 16px;
+}
+
+.tiret {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.nom_seq_comp {
+  white-space: nowrap;
+  padding: 0;
+  font-size: 16px; 
+  float: left;
+}
+
+.espace {
+  padding: 0;
+  font-size: 16px; 
+  float: left;
+  color: transparent;
+}
+
+.espace_no_float {
+  padding: 0;
+  font-size: 16px; 
+  color: transparent;
+}
+
+.i_prox {
+  display: inline-block;
+  font-size: 16px;
+}
+
+.calcul_indice {
+  padding: 0.1%;
+  font-size: 16px;
+  border: solid 1px black;
+  font-family: 'Courier New', Courier, monospace;
+  background-color: #04f7ff;
+}
+
+.arbre_indice {
+  transform: scale(0.6);
+  transform-origin: top left;
+  margin-left: 1%;
+  margin-top: 2%;
+  float: left;
+  width: 29%;
+}
+
+#arbre {
+  border: solid 2px black;
+}
+
+/* Double hélice animation */
+
+.helix {
+  transform: scale(0.28);
+  transform-origin: top left;
+  float: right;
+  margin-top: 2%;
+  margin-right: 45%;
+}
+.strand {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  margin: 0.35em auto;
+  --d: calc(var(--i) / var(--total));
+  --color: #0c2b4d ;
+  --duration: 1.5s;
+  --delay: calc((var(--duration) * -1) + 0.1s * var(--i));
+  -webkit-animation: var(--duration) cubic-bezier(0.4, 0, 0.6, 1) infinite;
+          animation: var(--duration) cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  -webkit-animation-delay: var(--delay);
+          animation-delay: var(--delay);
+}
+.left,
+.right {
+  -webkit-animation: inherit;
+          animation: inherit;
+  display: grid;
+  grid-template-areas: "layers";
+  align-items: center;
+  width: 7em; 
+}
+.left > *
+.right > * {
+  grid-area: layer;
+}
+.left {
+  transform: translateZ(0px);
+}
+.right {
+  transform: scaleX(-1);
+}
+.dot {
+  -webkit-animation: inherit;
+          animation: inherit;
+  -webkit-animation-duration: calc(var(--duration) * 2);
+          animation-duration: calc(var(--duration) * 2);
+  -webkit-animation-name: move-dot;
+          animation-name: move-dot;
+  --scame-start: 0.5;
+  --scale_end: 1;
+}
+@-webkit-keyframes move-dot {
+  50% {
+      transform: translateX(200%);
+  }
+}
+@keyframes move-dot {
+  50% {
+      transform: translateX(200%);
+  }
+}
+.right .dot {
+  --scale-start: 1;
+  --scale-end: 0.5;
+}
+.dot::before {
+  display: block;
+  content: "";
+  border-radius: 50%;
+  width: 1em;
+  height: 1em;
+  background: var(--color);
+  -webkit-animation: inherit;
+          animation: inherit;
+  -webkit-animation-name: scale-dot;
+          animation-name: scale-dot;
+}
+@-webkit-keyframes scale-dot {
+  33% {
+      transform: scale(var(--scale-start));
+  }
+  66% {
+      transform: scale(var(--scale-end));
+  }
+}
+@keyframes scale-dot {
+  33% {
+      transform: scale(var(--scale-start));
+  }
+  66% {
+      transform: scale(var(--scale-end));
+  }
+}
+.line {
+  width: calc(100% - 1.5em);
+  height: 0.25em;
+  border-radius: 1em;
+  background: var(--color);
+  margin-left: auto;
+  transform-origin: center right;
+  -webkit-animation: inherit;
+          animation: inherit;
+  -webkit-animation-name: scale-line;
+          animation-name: scale-line;
+}
+@-webkit-keyframes scale-line {
+  50% {
+      transform: scaleX(0.1);
+  }
+}
+@keyframes scale-line {
+  50% {
+      transform: scaleX(0.1);
+  }
+}
+

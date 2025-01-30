@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADN</title>
+    <link rel="stylesheet" href="static/style.css" />
+    <script defer src="static/adnpro.js"></script>
+</head>
+<body>
+    <h1>Alignement de séquences</h1>
+    <br>
+    <form action="/indice" id="sequence_form" method="POST">
+    <div id="options_conteneur"> <!-- Contient les options à droite de la page html -->
+        <label for="generer_nb" id="generer_nb">Taille séquence aléatoire</label>
+        <br>
+        <input type="number" value="100" max="9999" oninput="nb_gen_modif(this.value)" autocomplete="off" style="width: 50px;">
+        <button class="boutons_generer" id="genere" type="button" onclick="genere_tout()" >∞</button>
+        <br><br>
+        <label for="changer_nom_sq" id="changer_nom_sq">Nom des séquences</label>
+    
+        <div id="nom_des_seq">
+            <label for="nom_seq_1" id="input_numero_1">1- </label>
+            <input name="nom_seq_1" id="nom_seq_1" type="text" maxlength="20" value="Séquence 1" autocomplete="off" spellcheck="false">
+            <br> 
+            <label for="nom_seq_2" id="input_numero_2">2- </label>
+            <input name="nom_seq_2" id="nom_seq_2" type="text" maxlength="20" value="Séquence 2" autocomplete="off" spellcheck="false">
+        </div>
+            <button type="button" id="bouton_sauvegarder" onclick="Changer_nom()" >Sauvegarder</button>
+            <br><br>
+            <!-- Ecrit un message d'erreur si les noms de séquences sont identiques au moins deux fois  -->
+            <span id="erreur">*Deux séquences ne peuvent pas avoir le même nom.</span> 
+    </div>
+   
+    <div id="sequence_compare">
+    
+        <div id="liste_seq"> <!-- Input des séquences -->
+            <label for="sequence_1" class="label_seq" id="label_1">Séquence 1 </label>
+            <input type="text" id="sequence_1" name="sequence_1" value="" oninput="ATGC(this)" placeholder="ex: GAAT" autocomplete="off" spellcheck="false">
+            <button class="boutons_generer" id="bouton_gen_1" type="button" onclick="genere_seq(1)">∞</button>
+            
+            <label for="sequence_2" class="label_seq" id="label_2">Séquence 2 </label>
+            <input type="text" name="sequence_2" id="sequence_2" value="" oninput="ATGC(this)" autocomplete="off" spellcheck="false"> 
+            <button class="boutons_generer" id="bouton_gen_2" type="button" onclick="genere_seq(2)">∞</button>
+            <br><br>
+        </div>    
+        
+        
+        <br><br>
+        <div id="boutons_principal"> 
+            <button class="boutons" id="bouton_reset" type="reset">Réinitialiser</button>
+            <button class="boutons" id="bouton_ajoute" type="button" onclick="ajoute_seq()">+</button> 
+            <button class="boutons" id="bouton_enleve" type="button" onclick="enleve_seq()">-</button>
+            
+            <br></br>
+            <!-- Le bouton renvoie le formulaire et amène à indice.html -->
+            <input id="bouton_indice" type="submit" value="Indice de proximité">
+        </div>
+    </div>             
+    </form>  
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+    <form method="post" action="/upload" id="fasta_form" enctype="multipart/form-data"> 
+        <div id="import_fasta"> 
+            <input type="file" id="upload_fasta" name="upload_fasta" accept=".FASTA, .fasta"> <br><br>
+            <button type="button" onclick="fasta_enlever()">Remove File</button>
+            <input type="submit" value="Upload">
+        </div>
+    </form>
+     <!--
+    -->
+</body>
+</html>
